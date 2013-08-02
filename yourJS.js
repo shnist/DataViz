@@ -21,3 +21,9 @@ window.onload = function() {
     	
     	rectangle = paper.rect(rectangleTopLeftXPos, rectangleTopLeftYPos, rectangleWidth, rectangleHeight);  // add it all together...
 }
+
+
+
+
+
+
