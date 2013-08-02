@@ -37,7 +37,7 @@ Client.prototype.requestData = function () {
 Client.prototype.requestCallback = function (error, response, body) {
 	'use strict';
 
-	//console.log(error, response, body);
+	console.log(error, response);
 	if (!error && response.statusCode == 200) {
 		pubsub.publish('received/json', [{data:body}]);
 	} else {

@@ -13,19 +13,23 @@ var FileWriter = function (basePath) {
 	var that = this;
 
 	this.baseFilePath = basePath;
+	this.fileName = '';
 
 	pubsub.subscribe('received/json', function (response) {
-		that.writeFile(response.data, "barratt_development_57384");
+		console.log('write')
+		that.writeFile(response.data);
 	});
 };
 
 /**
 	@param body {JSON} JSON response from Zoopla server
 */
-FileWriter.prototype.writeFile = function (body, fileName) {
+FileWriter.prototype.writeFile = function (body) {
 	'use strict';
 
-	fs.writeFile(this.baseFilePath + fileName + '.json', body, function (err) {
+	console.log('write file', this.fileName);
+
+	fs.writeFile(this.baseFilePath + this.fileName + '.json', body, function (err) {
 		if (err) {
 			throw err;
 		} else {
@@ -34,5 +38,12 @@ FileWriter.prototype.writeFile = function (body, fileName) {
 	});
 
 };
+
+/**
+	@param name {String} branch number that forms the unique id of the file name
+*/
+FileWriter.prototype.assignNewName = function (name) {
+	this.fileName = 'barratt_development_' + name;
+}
 
 exports.FileWriter = FileWriter;

@@ -1,13 +1,4 @@
-var FileWriter = require('./file_writer').FileWriter;
-var Client = require('./zoopla_client').Client;
-
-
-var apiKey = 'mz26trd9n5se8dd4dyra5unz';
-var baseURL = 'http://api.zoopla.co.uk/api/v1/property_listings.js';
-var baseFilePath = '../json/';
-var params = {};
-
-var barratt_branches = [
+var barratt_bristol = [
 	'57384',
 	'54685',
 	'53374',
@@ -19,9 +10,15 @@ var barratt_branches = [
 	'31820',
 	'33466',
 	'58006',
-	'31129',
+	'31129'
+]
+
+var barratt_easterncounties = [
 	'52605',
-	'53553',
+	'53553'
+]
+
+var barratt_eastscotland = [
 	'31252',
 	'32797',
 	'58319',
@@ -37,7 +34,10 @@ var barratt_branches = [
 	'53548',
 	'33432',
 	'31250',
-	'32819',
+	'32819'
+]
+
+var barratt_exeter = [
 	'53551',
 	'47751',
 	'59403',
@@ -52,7 +52,11 @@ var barratt_branches = [
 	'31210',
 	'58017',
 	'47736',
-	'34044',
+	'34044'
+]
+
+
+var barratt_manchester = [
 	'54062',
 	'31318',
 	'57633',
@@ -74,18 +78,29 @@ var barratt_branches = [
 	'31254',
 	'47750',
 	'54063',
-	'58024',
+	'58024'
+]
+
+
+var barratt_mercia = [
 	'31103',
 	'31099',
 	'32817',
 	'57484',
-	'31098',
+	'31098'
+]
+
+
+var barratt_eastlondon = [
 	'54399',
 	'59405',
 	'58012',
 	'52417',
 	'52602',
-	'52642',
+	'52642'
+]
+
+var barratt_northampton = [
 	'31281',
 	'33825',
 	'56958',
@@ -102,7 +117,10 @@ var barratt_branches = [
 	'56975',
 	'47713',
 	'31279',
-	'56974',
+	'56974'
+]
+
+var barratt_northeast = [
 	'31178',
 	'47857',
 	'31182',
@@ -114,7 +132,10 @@ var barratt_branches = [
 	'31186',
 	'31188',
 	'52603',
-	'31735',
+	'31735'
+]
+
+var barratt_northlondon = [
 	'57994',
 	'56981',
 	'52632',
@@ -122,7 +143,10 @@ var barratt_branches = [
 	'58343',
 	'31199',
 	'31322',
-	'59022',
+	'59022'
+]
+
+var barratt_northmidlands = [
 	'32812',
 	'52320',
 	'31029',
@@ -136,12 +160,18 @@ var barratt_branches = [
 	'52612',
 	'31030',
 	'31853',
-	'57629',
+	'57629'
+]
+
+var barratt_southampton = [
 	'31220',
 	'57448',
 	'31807',
 	'33431',
-	'56990',
+	'56990'
+]
+
+var barratt_southerncounties = [
 	'58567',
 	'56984',
 	'58568',
@@ -152,7 +182,10 @@ var barratt_branches = [
 	'33828',
 	'31205',
 	'58428',
-	'53555',
+	'53555'
+]
+
+var barratt_southwales = [
 	'31233',
 	'33908',
 	'47718',
@@ -164,14 +197,23 @@ var barratt_branches = [
 	'31801',
 	'31228',
 	'54682',
-	'31234',
-	'54684',
+	'31234'
+]
+
+var barratt_southwest = [
+	'54684'
+]
+
+var barratt_westlondon = [
 	'59146',
 	'57995',
 	'58501',
 	'53014',
 	'59197',
-	'54246',
+	'54246'
+]
+
+var barratt_westmidlands = [
 	'31738',
 	'31736',
 	'58627',
@@ -190,7 +232,10 @@ var barratt_branches = [
 	'33907',
 	'58345',
 	'58020',
-	'58014',
+	'58014'
+]
+
+var barratt_westscotland = [
 	'31818',
 	'57743',
 	'31855',
@@ -204,14 +249,20 @@ var barratt_branches = [
 	'34057',
 	'59342',
 	'31154',
-	'59402',
+	'59402'
+]
+
+var barratt_yorkshireeast = [
 	'53011',
 	'53018',
 	'53571',
 	'58322',
 	'31171',
 	'59994',
-	'31169',
+	'31169'
+]
+
+var barratt_yorksirewest = [
 	'59969',
 	'31092',
 	'53786',
@@ -222,21 +273,4 @@ var barratt_branches = [
 	'31083',
 	'57979',
 	'53560'
-];
-
-
-
-var fileWriter = new FileWriter(baseFilePath);
-var i;
-var client;
-for (i = 0; i < barratt_branches.length; i++) {
-	params = {
-		"branch_id": barratt_branches[i]
-	};
-
-
-	//console.log(params)
-	fileWriter.assignNewName(barratt_branches[i]);
-	client = new Client(apiKey, params, baseURL);
-	client.requestData();
-}
+]
