@@ -37,9 +37,17 @@ Client.prototype.requestData = function () {
 Client.prototype.requestCallback = function (error, response, body) {
 	'use strict';
 
-	console.log(error, response);
+	//console.log(response.request.uri.query);
+	var keyValuePairs = response.request.uri.query.split('&'),
+		params = {};
+	//console.log(keyValuePairs);
+	for (var i = 0; i < keyValuePairs.length; i++) {
+		var splitPairs = keyValuePairs[i].split('=');
+		params[splitPairs[0]] = splitPairs[1];
+	}
+
 	if (!error && response.statusCode == 200) {
-		pubsub.publish('received/json', [{data:body}]);
+		pubsub.publish('received/json', [{data:body, name:params.branch_id}]);
 	} else {
 		throw error;
 	}

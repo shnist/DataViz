@@ -229,7 +229,7 @@ var barratt_branches = [
 var fileWriter = new FileWriter(baseFilePath);
 var i;
 var client;
-for (i = 0; i < barratt_branches.length; i++) {
+for (i = 0; i < 1; i++) {
 	params = {
 		"branch_id": barratt_branches[i]
 	};
